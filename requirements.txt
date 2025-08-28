@@ -1,3 +1,7 @@
 plotly
 pandas
 dash_mantine_components
+pandas
+openpyxl
+dash
+
