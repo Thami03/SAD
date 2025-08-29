@@ -5,7 +5,7 @@ import streamlit as st
 # -----------------------------
 # Configuração da página
 # -----------------------------
-st.set_page_config(page_title="📊 Dashboard da Lanchonete", layout="wide")
+st.set_page_config(page_title="Dashboard da Lanchonete", layout="wide")
 
 # -----------------------------
 # Carregar dados
@@ -48,16 +48,16 @@ def gerar_periodo(df, periodo):
 # -----------------------------
 # Layout
 # -----------------------------
-st.title("📊 Dashboard da Lanchonete")
+st.title(" Dashboard da Lanchonete")
 
 # KPIs principais
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.metric("💰 Faturamento Total", f"R$ {df['Valor total'].sum():,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
+    st.metric("Faturamento Total", f"R$ {df['Valor total'].sum():,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
 with col2:
-    st.metric("🛒 Total de Pedidos", f"{df['Número do Pedido'].nunique():,}".replace(",", "."))
+    st.metric(" Total de Pedidos", f"{df['Número do Pedido'].nunique():,}".replace(",", "."))
 with col3:
-    st.metric("🎟️ Ticket Médio", f"R$ {df['Valor total'].sum()/df['Número do Pedido'].count():.2f}".replace(".", ","))
+    st.metric(" Ticket Médio", f"R$ {df['Valor total'].sum()/df['Número do Pedido'].count():.2f}".replace(".", ","))
 
 st.markdown("---")
 
@@ -67,12 +67,12 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("📍 Origem dos Pedidos")
+    st.subheader(" Origem dos Pedidos")
     fig_origem = px.pie(df, names="Origem")
     st.plotly_chart(fig_origem, use_container_width=True)
 
 with col2:
-    st.subheader("💳 Condição de Pagamento")
+    st.subheader(" Condição de Pagamento")
     fig_pagamento = px.bar(
         df.groupby("Condição de pagamento").size().reset_index(name="Quantidade"),
         x="Condição de pagamento", y="Quantidade",
@@ -82,7 +82,7 @@ with col2:
 # -----------------------------
 # Evolução das vendas + Retirada
 # -----------------------------
-st.markdown("## 📈 Evolução de Vendas e Retirada")
+st.markdown("## Evolução de Vendas e Retirada")
 
 col1, col2 = st.columns(2)
 
@@ -105,7 +105,7 @@ with col2:
 # -----------------------------
 # Ticket Médio
 # -----------------------------
-st.markdown("## 🎟️ Ticket Médio")
+st.markdown("## Ticket Médio")
 
 periodo_ticket = st.selectbox("Período para Ticket Médio", ["Dia", "Mês", "Trimestre", "Semestre"], index=1)
 df_temp = df.copy()
